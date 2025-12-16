@@ -1,0 +1,6 @@
+@Library.CirculationService_HostAddress = http://localhost:5144
+
+GET {{Library.CirculationService_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

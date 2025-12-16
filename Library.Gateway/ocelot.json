@@ -1,0 +1,327 @@
+{
+  "Routes": [
+    // ----------------- Identity Service Routes -----------------
+    {
+      "DownstreamPathTemplate": "/api/auth/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7073
+        }
+      ],
+      "UpstreamPathTemplate": "/auth/{everything}",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
+    },
+
+    // ----------------- Catalog Service Routes -----------------
+    {
+      "DownstreamPathTemplate": "/api/Books/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7148
+        }
+      ],
+      "UpstreamPathTemplate": "/Books/{everything}",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
+    },
+
+    // ----------------- Circulation Service Routes (ALL PORTS FIXED TO 7167) -----------------
+
+    // 1. Get All Transactions (Admin)
+    // Controller: [HttpGet] at /api/circulation
+    {
+      "DownstreamPathTemplate": "/api/circulation",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7167
+        }
+      ],
+      "UpstreamPathTemplate": "/circulation",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+
+    // 2. Request Book
+    {
+      "DownstreamPathTemplate": "/api/Circulation/request",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7167
+        }
+      ],
+      "UpstreamPathTemplate": "/circulation/request",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+
+    // 3. Approve Request
+    {
+      "DownstreamPathTemplate": "/api/Circulation/approve/{transactionId}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7167
+        }
+      ],
+      "UpstreamPathTemplate": "/circulation/approve/{transactionId}",
+      "UpstreamHttpMethod": [ "PUT" ]
+    },
+
+    // 4. Return Book
+    {
+      "DownstreamPathTemplate": "/api/Circulation/return/{transactionId}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7167
+        }
+      ],
+      "UpstreamPathTemplate": "/circulation/return/{transactionId}",
+      "UpstreamHttpMethod": [ "PUT" ]
+    },
+
+    // 5. Pay Fine (✅ NEWLY ADDED)
+    {
+      "DownstreamPathTemplate": "/api/Circulation/pay-fine/{transactionId}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7167
+        }
+      ],
+      "UpstreamPathTemplate": "/circulation/pay-fine/{transactionId}",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+
+    // 6. My History
+    {
+      "DownstreamPathTemplate": "/api/Circulation/my-history",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7167
+        }
+      ],
+      "UpstreamPathTemplate": "/circulation/my-history",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+
+    // 7. Stats
+    {
+      "DownstreamPathTemplate": "/api/Circulation/stats",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7167
+        }
+      ],
+      "UpstreamPathTemplate": "/circulation/stats",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+
+    // 8. Catch-All for Circulation (Safety Net)
+    {
+      "DownstreamPathTemplate": "/api/circulation/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7167
+        }
+      ],
+      "UpstreamPathTemplate": "/circulation/{everything}",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
+    },
+    //weekly
+    {
+      "DownstreamPathTemplate": "/api/Circulation/stats/weekly",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7167
+        }
+      ],
+      "UpstreamPathTemplate": "/circulation/stats/weekly",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Circulation/waitlist",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7167
+        }
+      ],
+      "UpstreamPathTemplate": "/circulation/waitlist",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    //notification
+    {
+      "DownstreamPathTemplate": "/api/Circulation/notifications",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7167
+        }
+      ],
+      "UpstreamPathTemplate": "/circulation/notifications",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    // stats
+    {
+      "DownstreamPathTemplate": "/api/Circulation/my-stats",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7167
+        }
+      ],
+      "UpstreamPathTemplate": "/circulation/my-stats",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    //reject
+    {
+      "DownstreamPathTemplate": "/api/Circulation/reject/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7167
+        }
+      ],
+      "UpstreamPathTemplate": "/circulation/reject/{id}",
+      "UpstreamHttpMethod": [ "PUT" ]
+    },
+    //change password
+    {
+      "DownstreamPathTemplate": "/api/auth/change-password",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7001
+        }
+      ], // Check your Identity Port
+      "UpstreamPathTemplate": "/auth/change-password",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/auth/profile",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7073
+        }
+      ], // Check your Identity Port
+      "UpstreamPathTemplate": "/auth/profile",
+      "UpstreamHttpMethod": [ "GET", "PUT" ]
+    },
+    //reviews
+    {
+      "DownstreamPathTemplate": "/api/books/review",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7148
+        }
+      ], // Catalog Port
+      "UpstreamPathTemplate": "/books/review",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/books/{bookId}/reviews",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7148
+        }
+      ],
+      "UpstreamPathTemplate": "/books/{bookId}/reviews",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    //return request
+    {
+      "DownstreamPathTemplate": "/api/circulation/return-request",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7167
+        }
+      ],
+      "UpstreamPathTemplate": "/circulation/return-request",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    // Add these to your Routes array
+    {
+      "DownstreamPathTemplate": "/api/circulation/admin/pending-returns",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7167
+        }
+      ],
+      "UpstreamPathTemplate": "/circulation/admin/pending-returns",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    //admin actions
+    {
+      "DownstreamPathTemplate": "/api/circulation/admin/approve-return/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7167
+        }
+      ],
+      "UpstreamPathTemplate": "/circulation/admin/approve-return/{id}",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    // Add these to Routes
+    {
+      "DownstreamPathTemplate": "/api/circulation/stats/top-books",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7167
+        }
+      ],
+      "UpstreamPathTemplate": "/circulation/stats/top-books",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/circulation/stats/top-users",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7167
+        }
+      ],
+      "UpstreamPathTemplate": "/circulation/stats/top-users",
+      "UpstreamHttpMethod": [ "GET" ]
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "https://localhost:7228"
+  }
+}
