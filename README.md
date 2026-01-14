@@ -33,12 +33,12 @@ The system utilizes a decoupled architecture to ensure independent service scala
 ### 1. Prerequisites
 * [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
 * [Node.js](https://nodejs.org/) (v18+)
-* SQL Server (LocalDB or Express)
+* SQL Server (SSMS or Express)
 
 ### 2. Backend Configuration
 1.  **Clone the repository:**
     ```bash
-    git clone [https://github.com/your-username/BookBuddy-LMS.git](https://github.com/your-username/BookBuddy-LMS.git)
+    git clone https://github.com/SadwaleShivaji-donet-Hyd/BookBuddy-LMS.git
     ```
 2.  **Apply Database Migrations:**
     Execute migrations for both core services:
